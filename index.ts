@@ -4,7 +4,7 @@ import { dirname, join } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 const buildMakefileFromScripts = (scripts: Record<string, string>) =>
   Object.entries(scripts).map(([name, command]) => (`
-${name}: PHONY
+${name.replaceAll(":", ".")}: PHONY
 	${command}
 `.trim())).join("\n\n") + "\n\nPHONY:";
 
